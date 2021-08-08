@@ -59,8 +59,17 @@ def get_app_token(login_token):
     headers = {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 9; MI 6 MIUI/20.6.18)"}
     response = requests.get(url, headers=headers).json()
     app_token = response["token_info"]["app_token"]
-
     return app_token
+
+
+# 获取时间戳
+def get_time():
+    headers = {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 9; MI 6 MIUI/20.6.18)"}
+    url = "http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp"
+    response = requests.get(url, headers=headers).json()
+    t = response["data"]["t"]
+
+    return t
 
 
 # 主函数
@@ -87,7 +96,7 @@ def run(user, passwd, step):
     findstep = re.compile(r".*?ttl%5C%22%3A(.*?)%2C%5C%22dis.*?")
     data_json = re.sub(finddate.findall(data_json)[0], today, str(data_json))
     data_json = re.sub(findstep.findall(data_json)[0], step, str(data_json))
-    url = f"https://api-mifit-cn.huami.com/v1/data/band_data.json?&t="
+    url = f"https://api-mifit-cn.huami.com/v1/data/band_data.json?&t={get_time()}"
     head = {"apptoken": app_token, "Content-Type": "application/x-www-form-urlencoded"}
     data = f"userid={userid}&last_sync_data_time={int(time.time())}&device_type=0&last_deviceid=DA932FFFFE8816E7&data_json={data_json}"
     response = requests.post(url, data=data, headers=head).json()
