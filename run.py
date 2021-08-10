@@ -56,7 +56,7 @@ def login(user, password):
 # 获取app_token
 def get_app_token(login_token):
     url = f"https://account-cn.huami.com/v1/client/app_tokens?app_name=com.xiaomi.hm.health&dn=api-user.huami.com%2Capi-mifit.huami.com%2Capp-analytics.huami.com&login_token={login_token}"
-    headers = {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 9; MI 6 MIUI/20.6.18)"}
+    headers = {"User-Agent": "MiFit/5.3.0 (iPhone; iOS 14.7.1; Scale/3.00)"}
     response = requests.get(url, headers=headers).json()
     app_token = response["token_info"]["app_token"]
     return app_token
@@ -64,7 +64,7 @@ def get_app_token(login_token):
 
 # 获取时间戳
 def get_time():
-    headers = {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 9; MI 6 MIUI/20.6.18)"}
+    headers = {"User-Agent": "MiFit/5.3.0 (iPhone; iOS 14.7.1; Scale/3.00)"}
     url = "http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp"
     response = requests.get(url, headers=headers).json()
     t = response["data"]["t"]
