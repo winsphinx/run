@@ -20,6 +20,7 @@ jobs:
 
     - name: Run
       run: |
+        sudo timedatectl set-timezone Asia/Shanghai
         pip install requests
         user='${{ secrets.USER }}'
         pwd='${{ secrets.PWD }}'
