@@ -2,7 +2,7 @@ name: 奔跑吧
 
 on:
   schedule:
-    - cron: "0 18 * * *"
+    - cron: "0 0 * * *"
   watch:
     types: started
 
@@ -20,7 +20,6 @@ jobs:
 
     - name: Run
       run: |
-        sudo timedatectl set-timezone Asia/Shanghai
         pip install requests
         user='${{ secrets.USER }}'
         pwd='${{ secrets.PWD }}'
