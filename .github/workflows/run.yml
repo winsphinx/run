@@ -2,7 +2,7 @@ name: 奔跑吧
 
 on:
   schedule:
-    - cron: "0 0/6 * * *"
+    - cron: "0 0/8 * * *"
   watch:
     types: started
 
@@ -38,5 +38,5 @@ jobs:
       with:
         token: ${{ github.token }}
         repository: ${{ github.repository }}
-        retain_days: 7
+        retain_days: 3
         keep_minimum_runs: 0
